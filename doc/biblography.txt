@@ -1,0 +1,8 @@
+Throughout the source tree, you will sometimes see comments with
+[citations]. This file contains information about the resources to which
+they refer.
+
+Please keep this list in alphabetical order:
+
+[bcm2835]: BCM2835 ARM Peripherals
+  http://www.raspberrypi.org/wp-content/uploads/2012/02/BCM2835-ARM-Peripherals.pdf

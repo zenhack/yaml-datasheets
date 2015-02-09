@@ -1,0 +1,40 @@
+# This is the physical memory map for the BCM2835 ARM core (Raspberry PI).
+# It's pulled from [bcm2835], page 5.
+
+# Each item in the dictionary below is either:
+#
+# * an address, which is relative to the address of it's enclosing dictionary
+# * a dictionary which contains a "start" element, which is the address of the
+#   dictionary itself, and zero or more other items.
+
+# TODO: We need to record spi1, but I want to figure out how I'm going to factor
+# that out first -- it's the same as spi, but at a different starting address.
+# yaml supports references, but I need to remind myself how they work.
+# 
+# We should also add things that are mapped outside of the io_peripherals.
+io_peripherals:
+  start: 0x20000000
+  aux_registers:
+    start: 0x00215000
+    irq: 0x0
+    enables: 0x4
+    mini_uart:
+      start: 0x40
+      io_reg: 0x0
+      ier_reg: 0x4
+      iir_reg: 0x8
+      lcr_reg: 0xc
+      mcr_reg: 0x10
+      lsr_reg: 0x14
+      msr_reg: 0x18
+      scratch: 0x1c
+      cntl_reg: 0x20
+      stat_reg: 0x24
+      baud_reg: 0x28
+    spi0:
+      start: 0x80
+      cntl0_reg: 0x0
+      cntl1_reg: 0x4
+      stat_reg: 0x8
+      io_reg: 0x10
+      peek_reg: 0x14
