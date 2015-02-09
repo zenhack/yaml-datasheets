@@ -38,3 +38,23 @@ io_peripherals:
       stat_reg: 0x8
       io_reg: 0x10
       peek_reg: 0x14
+  uart_registers:
+    start: 0x00201000
+    dr_reg: 0x0
+    rsrecr_reg: 0x4
+    fr_reg: 0x18
+    ilpr_reg: 0x20
+    ibrd_reg: 0x24
+    fbrd_reg: 0x28
+    lcrh_reg: 0x2c
+    cr_reg: 0x30
+    ifls_reg: 0x34
+    imsc_reg: 0x38
+    ris_reg: 0x3c
+    mis_reg: 0x40
+    icr_reg: 0x44
+    dmacr_reg: 0x48
+    itcr_reg: 0x80
+    itip_reg: 0x84
+    itop_reg: 0x88
+    tdr_reg: 0x8c
