@@ -3,58 +3,64 @@
 
 # Each item in the dictionary below is either:
 #
-# * an address, which is relative to the address of it's enclosing dictionary
-# * a dictionary which contains a "start" element, which is the address of the
-#   dictionary itself, and zero or more other items.
+# (1) an address, which is relative to the address of it's enclosing dictionary
+# (2) a dictionary which contains
+#     (a) a "start" element, which is the address of the dictionary itself
+#     (b) one or more elements whose values are dictionaries, which contain
+#         (1) or (2) relative to (a)
 
-# TODO: We need to record spi1, but I want to figure out how I'm going to factor
-# that out first -- it's the same as spi, but at a different starting address.
-# yaml supports references, but I need to remind myself how they work.
-# 
 # We should also add things that are mapped outside of the io_peripherals.
+
 io_peripherals:
   start: 0x20000000
   aux_registers:
     start: 0x00215000
-    irq: 0x0
-    enables: 0x4
-    mini_uart:
-      start: 0x40
-      io_reg: 0x0
-      ier_reg: 0x4
-      iir_reg: 0x8
-      lcr_reg: 0xc
-      mcr_reg: 0x10
-      lsr_reg: 0x14
-      msr_reg: 0x18
-      scratch: 0x1c
-      cntl_reg: 0x20
-      stat_reg: 0x24
-      baud_reg: 0x28
-    spi0:
-      start: 0x80
-      cntl0_reg: 0x0
-      cntl1_reg: 0x4
-      stat_reg: 0x8
-      io_reg: 0x10
-      peek_reg: 0x14
+    regs:
+      irq: 0x0
+      enables: 0x4
+      mini_uart:
+        start: 0x40
+        regs:
+          io: 0x0
+          ier: 0x4
+          iir: 0x8
+          lcr: 0xc
+          mcr: 0x10
+          lsr: 0x14
+          msr: 0x18
+          scratch: 0x1c
+          cntl: 0x20
+          stat: 0x24
+          baud: 0x28
+      spi0:
+        start: 0x80
+        regs: &spi
+          cntl0: 0x0
+          cntl1: 0x4
+          stat: 0x8
+          io: 0x10
+          peek: 0x14
+      spi1:
+        start: 0xc0
+        regs: *spi
   uart_registers:
     start: 0x00201000
-    dr_reg: 0x0
-    rsrecr_reg: 0x4
-    fr_reg: 0x18
-    ilpr_reg: 0x20
-    ibrd_reg: 0x24
-    fbrd_reg: 0x28
-    lcrh_reg: 0x2c
-    cr_reg: 0x30
-    ifls_reg: 0x34
-    imsc_reg: 0x38
-    ris_reg: 0x3c
-    mis_reg: 0x40
-    icr_reg: 0x44
-    dmacr_reg: 0x48
-    itcr_reg: 0x80
-    itip_reg: 0x84
-    itop_reg: 0x88
-    tdr_reg: 0x8c
+    regs:
+      dr: 0x0
+      rsrecr: 0x4
+      fr: 0x18
+      ilpr: 0x20
+      ibrd: 0x24
+      fbrd: 0x28
+      lcrh: 0x2c
+      cr: 0x30
+      ifls: 0x34
+      imsc: 0x38
+      ris: 0x3c
+      mis: 0x40
+      icr: 0x44
+      dmacr: 0x48
+      itcr: 0x80
+      itip: 0x84
+      itop: 0x88
+      tdr: 0x8c
